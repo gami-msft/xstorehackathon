@@ -28,7 +28,7 @@ namespace Hackathon
             Console.WriteLine("Creating some sample blobs for deletion.");
 
             // Create 100 blobs in both the containers
-            for (int i=0;i <100; i++)
+            for (int i = 0;i < 100; i++)
             {
                 BlobClient blob1 = container1.GetBlobClient("blob_" + i);
                 blob1.Upload(new MemoryStream(Encoding.UTF8.GetBytes("Data!")));
