@@ -4,6 +4,7 @@ namespace Hackathon
 {
     enum ProblemName
     {
+        None,
         CreateMillionBlobs,
         ListMillion,
         ListMillionRandom,
@@ -22,9 +23,21 @@ namespace Hackathon
             // to console [false] or a file [true] 
              bool redirectOutputToFile = false;
 
+            Console.WriteLine("Enter the Problem id to execute." +
+                " \n 1 for CreateMillionBlobs" +
+                " \n 2 for ListMillion" +
+                " \n 3 for ListMillionRandom" +
+                " \n 4 for Throttling" +
+                " \n 5 for PageBlobDataSaver" +
+                " \n 6 for BatchDelete");
+
+
             // Controls what code we want to run, please select 
             // problem name from the specified enum
-            ProblemName runChallenge = ProblemName.BatchDelete;
+            string val = Console.ReadLine();
+
+            // Convert to ProblemName
+            ProblemName runChallenge = (ProblemName)Convert.ToInt16(val);
 
             switch(runChallenge)
             {

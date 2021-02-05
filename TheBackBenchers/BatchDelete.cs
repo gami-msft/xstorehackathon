@@ -11,6 +11,8 @@ namespace Hackathon
     {
         public static void Execute(bool redirectOutputToFile)
         {
+            Console.WriteLine("Code demonstrating a Batch Delete scenario. \n");
+
             // Set output path for debugging purposes
             Helper helper = new Helper();
             helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\BatchDelete.txt");

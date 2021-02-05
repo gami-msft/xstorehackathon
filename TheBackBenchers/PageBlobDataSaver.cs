@@ -12,6 +12,8 @@ namespace Hackathon
     {
         public static void Execute(bool redirectOutputToFile)
         {
+            Console.WriteLine("Code demonstrating Page Blob Data saver scenario. \n");
+
             // Set output path for debugging purposes
             Helper helper = new Helper();
             helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\PageBlobDataSaver.txt");
@@ -56,6 +58,8 @@ namespace Hackathon
                 // Assert that the page downloaded is non empty
                 Assert.IsTrue(pageBlob.Value.ContentLength > 0);
             }
+
+            Console.WriteLine("Code demonstrating Page Blob Data saver scenario completed. \n");
         }
     }
 }
