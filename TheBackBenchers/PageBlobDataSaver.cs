@@ -9,8 +9,12 @@ namespace Hackathon
 {
     class PageBlobDataSaver
     {
-        public static void Execute()
+        public static void Execute(bool redirectOutputToFile)
         {
+            // Set output path for debugging purposes
+            Helper helper = new Helper();
+            helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\PageBlobDataSaver.txt");
+
             Random random = new Random();
             Byte[] sourceBytes = new Byte[Helper.Kilobyte];
             random.NextBytes(sourceBytes);

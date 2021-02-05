@@ -1,41 +1,75 @@
-﻿using Azure.Storage.Files.DataLake;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace Hackathon
 {
+    enum ProblemName
+    {
+        CreateMillionBlobs,
+        ListMillion,
+        ListMillionRandom,
+        Throttling,
+        PageBlobDataSaver,
+        BatchDelete
+    };
+
     class Controller
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Xstore Hackathon !!!");
 
-            // Controls what code we want to run, uncomment 
-            // any one of these below to see the code in action
-
-            // Flag to toggle printing output 
+            // Flag to toggle output redirection 
             // to console [false] or a file [true] 
              bool redirectOutputToFile = false;
 
-            // Create 1 million blobs
-            // CreateMillionBlobs.Execute(redirectOutputToFile);
+            // Controls what code we want to run, please select 
+            // problem name from the specified enum
+            ProblemName runChallenge = ProblemName.BatchDelete;
 
-            // List 1 million blobs
-           //  ListMillion.Execute(redirectOutputToFile);
+            switch(runChallenge)
+            {
+                case ProblemName.CreateMillionBlobs:
 
-            // List 1 million blobs in random order
-            // ListMillionRandom.Execute(redirectOutputToFile);
+                    // Create 1 million blobs
+                    CreateMillionBlobs.Execute(redirectOutputToFile);
+                    break;
 
-            // Throttling Sample
-            // Throttling.Execute(redirectOutputToFile);
+                case ProblemName.ListMillion:
 
+                    // List 1 million blobs
+                    ListMillion.Execute(redirectOutputToFile);
+                    break;
 
-            // PageBlobDataSaver Sample
-            //PageBlobDataSaver.Execute();
+                case ProblemName.ListMillionRandom:
 
-            // BatchDelete Sample
-            BatchDelete.Execute();
+                    // List 1 million blobs in random order
+                    ListMillionRandom.Execute(redirectOutputToFile);
+                    break;
+
+                case ProblemName.Throttling:
+
+                    // Program to demonstrate 503 and how to handle the same
+                    Throttling.Execute(redirectOutputToFile);
+                    break;
+
+                case ProblemName.PageBlobDataSaver:
+
+                    // Program to demonstrate 503 and how to handle the same
+                    PageBlobDataSaver.Execute(redirectOutputToFile);
+                    break;
+
+                case ProblemName.BatchDelete:
+
+                    // Program to demonstrate BatchDelete api
+                    BatchDelete.Execute(redirectOutputToFile);
+                    break;
+
+                default:
+
+                    // Invalid problem name
+                    Console.WriteLine("Problem name is invalid, please provide a valid problem name!");
+                    break;
+            }
         }
     }
 }

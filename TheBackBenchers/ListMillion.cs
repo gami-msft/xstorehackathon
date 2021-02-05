@@ -12,7 +12,7 @@ namespace Hackathon
             Helper helper = new Helper();
 
             // Set output path for debugging purposes
-            helper.SetConsoleOutPutPath(redirectOutputToFile, "C:\\Users\\gami\\Desktop\\Hackathon\\ListMillion.txt");
+            helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\ListMillion.txt");
 
             // Get the token from AAD for the SP
             // and use it to get the ABFS client
@@ -24,6 +24,8 @@ namespace Hackathon
 
             // List 1 million Blobs [note send recursive = true here]
             helper.ListBlobs(fileSystemClient, Helper.DirectoryForListing, true, false).GetAwaiter().GetResult();
+
+            Console.WriteLine("Code demonstrating listing a million blobs [completed successfully].");
         }
     }
 }

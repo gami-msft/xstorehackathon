@@ -10,8 +10,12 @@ namespace Hackathon
 {
     class BatchDelete
     {
-        public static void Execute()
+        public static void Execute(bool redirectOutputToFile)
         {
+            // Set output path for debugging purposes
+            Helper helper = new Helper();
+            helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\BatchDelete.txt");
+
             int segmentSize = 10;
             BlobServiceClient service = new BlobServiceClient(Helper.ConnectionString);
             BlobContainerClient container = service.GetBlobContainerClient(Helper.ContainerName);

@@ -50,7 +50,7 @@ namespace Hackathon
             Helper helper = new Helper();
 
             // Set output path for debugging purposes
-            helper.SetConsoleOutPutPath(redirectOutputToFile, "C:\\Users\\gami\\Desktop\\Hackathon\\Trottling.txt");
+            helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\Trottling.txt");
 
             // Get the token from AAD for the SP
             // and use it to get the ABFS [Blob] client

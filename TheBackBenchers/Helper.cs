@@ -14,24 +14,28 @@ namespace Hackathon
 {
     class Helper
     {
-        // Common arguments which are to be used for running the code [will remain common]
-        // Please set them according to the storage account / SP you are using 
+        // Common arguments which are to be used for running the code
+        // Please set them according to the storage account / SP you 
+        // are using, Please leave these empty while checking in
+        
         public const string TenantId = "";
         public const string ClientId = "";
         public const string ClientSecret = "";
+        
         public const string StorageAccountName = "";
         public const string BlobStorageAccountName = "";
-        //Set up connection string & container
         public const string ConnectionString = "";
-        public const string ContainerName = "millionblobs";
-        public const string DirectoryForListing = "";
+
+        // Constants which are used at multiple places but can be fixed
         public const int Kilobyte = 1024;
         public const int Megabyte = 1024 * Kilobyte;
         public const long Gigabyte = 1024 * Megabyte;
+        public const string ContainerName = "millionblobs";
+        public const string DirectoryForListing = "MultipleLevels";
 
         // Public variables to store results if required
-        List<string> directoryList = new List<string> ();
-        List<string> fileList = new List<string>();
+        public List<string> directoryList = new List<string> ();
+        public List<string> fileList = new List<string>();
 
         /// <summary>
         /// Create a container
@@ -106,98 +110,6 @@ namespace Hackathon
                 }
 
                 item = enumerator.Current;
-            }
-        }
-
-        /// <summary>
-        /// Function to list one million blobs in random order
-        /// Parrallelization can be controlled via 'numTasks'
-        /// </summary>
-        public void ListMillionBlobsInRandomOrder(DataLakeFileSystemClient fileSystemClient, string directoryName)
-        {
-            // Assuming that listing is being done on a directory that has 
-            // million blobs which have been partitioned [into subdirectories]
-
-            // Step 1- Perform a non recursive listing on the directory 
-            // and capture all those directories in a List<>
-            Console.WriteLine("Performing a non recursive listing on top level.");
-            this.ListBlobs(fileSystemClient, directoryName, false, true).GetAwaiter().GetResult();
-
-            // Step 2- Chunk down above list into buckets of 'numTasks' and let 
-            // them print the output of listing in a unique directory
-            int numTasks = 1000;
-            List<string> temp = new List<string>();
-
-            // Step 3- Initiate recursive listing on all the buckets in parallel
-            Console.WriteLine("Initiating {0} parallel tasks to provide randomness in listing.",
-                numTasks);
-
-            int i = 0;
-            while (i < this.directoryList.Count)
-            {
-                List<TaskAwaiter> allTasks = new List<TaskAwaiter>();
-
-                for (int j = 0; j < numTasks; j++)
-                {
-                    allTasks.Add(this.ListBlobs(fileSystemClient, this.directoryList[i],
-                        true, false).GetAwaiter()); ;
-                    i++;
-                }
-
-                // Wait on all tasks to get finished
-                for (int j = 0; j < allTasks.Count; j++)
-                {
-                    try
-                    {
-                        allTasks[j].GetResult();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Task Id {0}, failed with -\n", i);
-                        Console.WriteLine(e.Message);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Main function we can use to create 1 million 
-        /// empty block blobs inside a given directory
-        /// </summary>
-        public void CreateMillionBlobs(DataLakeFileSystemClient fileSystemClient, string directoryName)
-        {
-            DataLakeDirectoryClient directoryClient = fileSystemClient.GetDirectoryClient(directoryName);
-
-            // Use the service client to create Blobs of 
-            // the format 000000 to 999999 .txt names
-            // Initiate 1000 tasks creating 1000 files each
-            // Currently file naming is based on the fact that 
-            // numTasks = numFilesPerTask (also set D* value accordingly)
-            
-            int numTasks = 1000;
-            int numFilesPerTask = 1000;
-
-            List<TaskAwaiter> allTasks = new List<TaskAwaiter>();
-
-            for (int i = 0; i < numTasks; i++)
-            {
-                Console.WriteLine("Creating Task Id = {0}.", i);
-                Helper uploadFiles = new Helper();
-                allTasks.Add(uploadFiles.UploadFile(directoryClient, numTasks, i, numFilesPerTask).GetAwaiter());
-            }
-
-            // Wait on all tasks to get finished
-            for (int i = 0; i < allTasks.Count; i++)
-            {
-                try
-                {
-                    allTasks[i].GetResult();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Task Id {0}, failed with -\n", i);
-                    Console.WriteLine(e.Message);
-                }
             }
         }
 
