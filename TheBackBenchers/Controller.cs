@@ -22,13 +22,20 @@ namespace Hackathon
             // CreateMillionBlobs.Execute(redirectOutputToFile);
 
             // List 1 million blobs
-             ListMillion.Execute(redirectOutputToFile);
+           //  ListMillion.Execute(redirectOutputToFile);
 
             // List 1 million blobs in random order
             // ListMillionRandom.Execute(redirectOutputToFile);
 
             // Throttling Sample
             // Throttling.Execute(redirectOutputToFile);
+
+
+            // PageBlobDataSaver Sample
+            //PageBlobDataSaver.Execute();
+
+            // BatchDelete Sample
+            BatchDelete.Execute();
         }
     }
 }

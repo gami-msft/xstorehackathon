@@ -54,16 +54,16 @@ namespace Hackathon
 
             // Get the token from AAD for the SP
             // and use it to get the ABFS [Blob] client
-            BlobServiceClient serviceClient = helper.GetBlobServiceClient(Helper.blobStorageAccountName, Helper.clientId,
-                Helper.clientSecret, Helper.tenantId, options);
+            BlobServiceClient serviceClient = helper.GetBlobServiceClient(Helper.BlobStorageAccountName, Helper.ClientId,
+                Helper.ClientSecret, Helper.TenantId, options);
 
             var blobContainerClient =
-                serviceClient.GetBlobContainerClient(Helper.containerName);
+                serviceClient.GetBlobContainerClient(Helper.ContainerName);
 
             // Get a page blob client
             var pageBlobClient = blobContainerClient.GetPageBlobClient("dailyUpdates" + DateTime.Now.ToString()
                 + ".vhd");
-            pageBlobClient.Create(16 * Helper.OneGigabyteAsBytes);
+            pageBlobClient.Create(16 * Helper.Gigabyte);
 
             // Let us simulate 500 clients simultaneously 
             // trying to update the page blob
