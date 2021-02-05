@@ -76,7 +76,7 @@ namespace Hackathon
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Task Id {0}, failed with -\n", i);
+                        Console.WriteLine("Task Id {0}, failed with -\n", j);
                         Console.WriteLine(e.Message);
                     }
                 }

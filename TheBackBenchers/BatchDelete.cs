@@ -15,7 +15,7 @@ namespace Hackathon
             Helper helper = new Helper();
             helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\BatchDelete.txt");
 
-            int segmentSize = 10;
+            int segmentSize = 256;
             // Set up clients
             BlobServiceClient blobServiceClient = new BlobServiceClient(Helper.ConnectionString);
             BlobContainerClient container1 = blobServiceClient.GetBlobContainerClient(Helper.ContainerName);
@@ -27,9 +27,11 @@ namespace Hackathon
 
             Console.WriteLine("Creating some sample blobs for deletion.");
 
-            // Create 100 blobs in both the containers
-            for (int i = 0;i < 100; i++)
+            // Create 50 blobs in both the containers
+            for (int i = 0; i < 50; i++)
             {
+                Console.WriteLine("Creating blob id = {0}", i.ToString());
+
                 BlobClient blob1 = container1.GetBlobClient("blob_" + i);
                 blob1.Upload(new MemoryStream(Encoding.UTF8.GetBytes("Data!")));
 
