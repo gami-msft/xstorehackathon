@@ -1,5 +1,4 @@
-# Hackathon for XStore
-
+# Project submission for 'XStore-Hackathon'
 
 ## Team Details
 
@@ -7,22 +6,18 @@
 * Teammates - Gaurav Mishra (gami@microsoft.com), Sneha Varma (snvarma@microsoft.com)
 
 
-## Program Details
+## Program Details (as they appear in demo)
 
-* Batch Delete
 * Create Million Blobs
-* List Million Blobs
-* List Million Blobs Randomly
-* Page Blob Data Saver
+* List Million Blobs (sequential listing)
+* List Million Blobs Randomly (multi threaded)
 * Throttling
+* Page Blob Data Saver
+* Batch Delete
 
 ## How To Run
 
-* Update the client credentials, storage account details in Helpers.cs
-* Enter the Problem id to execute the respective Sample Program:
-   1 for CreateMillionBlobs
-   2 for ListMillion
-   3 for ListMillionRandom
-   4 for Throttling
-   5 for PageBlobDataSaver
-   6 for BatchDelete
+* Update the details asked for in AccountDetails.xml file.
+* Open the .net project {Hackathon.csproj} in Visual Studio (>2017) and press Ctrl + F5 to launch the project.
+* Follow on screen instrauctions [We will ask you to select a problem number and run the same for you].
+* Enter the Problem id to execute the respective sample program.
