@@ -9,7 +9,7 @@ namespace Hackathon
 {
     class BatchDelete
     {
-        public static void Execute(bool redirectOutputToFile)
+        public static void Execute()
         {
             Console.WriteLine("\n Code demonstrating a Batch Delete scenario. \n");
             Console.WriteLine("\n [Warning this will delete all blobs in your account - Kindly type Yes to proceed] \n");
@@ -28,7 +28,7 @@ namespace Hackathon
 
             // Set output path for debugging purposes
             Helper helper = new Helper();
-            helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\BatchDelete.txt");
+            helper.SetConsoleOutPutPath(helper.RedirectOutputToFile, ".\\BatchDelete.txt");
 
             int segmentSize = 256;
             // Set up clients

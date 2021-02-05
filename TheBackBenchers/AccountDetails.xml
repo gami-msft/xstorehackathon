@@ -30,4 +30,8 @@
 
 <ConnectionString></ConnectionString>
 
+<!-- Set ouput redirection (true/false) setting this to true we will 
+	save console output of respective sample run in .\bin\Debug\netcoreapp2.1\ folder-->
+<RedirectOutputToFile>false</RedirectOutputToFile> 
+
 </AccountDetails>

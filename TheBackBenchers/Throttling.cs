@@ -25,7 +25,7 @@ namespace Hackathon
         /// if all clients are uploading to the page blob simultaneously
         /// Ref Doc - https://docs.microsoft.com/en-us/azure/storage/blobs/scalability-targets
 
-        public static void Execute(bool redirectOutputToFile)
+        public static void Execute()
         {
             Console.WriteLine("Code demonstrating a throttling scenario. \n");
 
@@ -57,7 +57,7 @@ namespace Hackathon
             Helper helper = new Helper();
 
             // Set output path for debugging purposes
-            helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\Throttling.txt");
+            helper.SetConsoleOutPutPath(helper.RedirectOutputToFile, ".\\Throttling.txt");
 
             // Get the token from AAD for the SP
             // and use it to get the ABFS [Blob] client

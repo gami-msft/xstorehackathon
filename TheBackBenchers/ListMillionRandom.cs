@@ -7,14 +7,14 @@ namespace Hackathon
 {
     class ListMillionRandom
     {
-        public static void Execute(bool redirectOutputToFile)
+        public static void Execute()
         {
             Console.WriteLine("Code demonstrating listing a million blobs [in random order].");
 
             Helper helper = new Helper();
 
             // Set output path for debugging purposes
-            helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\ListMillionRandom.txt");
+            helper.SetConsoleOutPutPath(helper.RedirectOutputToFile, ".\\ListMillionRandom.txt");
 
             // Get the token from AAD for the SP
             // and use it to get the ABFS client

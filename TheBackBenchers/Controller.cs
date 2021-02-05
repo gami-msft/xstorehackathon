@@ -20,10 +20,6 @@ namespace Hackathon
         {
             Console.WriteLine("Welcome to Xstore Hackathon !!!");
 
-            // Flag to toggle output redirection 
-            // to console [false] or a file [true] 
-             bool redirectOutputToFile = false;
-
             Console.WriteLine("Enter the Problem id to execute." +
                 " \n 1 for CreateMillionBlobs" +
                 " \n 2 for ListMillion" +
@@ -44,37 +40,37 @@ namespace Hackathon
                 case ProblemName.CreateMillionBlobs:
 
                     // Create 1 million blobs
-                    CreateMillionBlobs.Execute(redirectOutputToFile);
+                    CreateMillionBlobs.Execute();
                     break;
 
                 case ProblemName.ListMillion:
 
                     // List 1 million blobs
-                    ListMillion.Execute(redirectOutputToFile);
+                    ListMillion.Execute();
                     break;
 
                 case ProblemName.ListMillionRandom:
 
                     // List 1 million blobs in random order
-                    ListMillionRandom.Execute(redirectOutputToFile);
+                    ListMillionRandom.Execute();
                     break;
 
                 case ProblemName.Throttling:
 
                     // Program to demonstrate 503 and how to handle the same
-                    Throttling.Execute(redirectOutputToFile);
+                    Throttling.Execute();
                     break;
 
                 case ProblemName.PageBlobDataSaver:
 
-                    // Program to demonstrate 503 and how to handle the same
-                    PageBlobDataSaver.Execute(redirectOutputToFile);
+                    // Page blob data saver demo
+                    PageBlobDataSaver.Execute();
                     break;
 
                 case ProblemName.BatchDelete:
 
                     // Program to demonstrate BatchDelete api
-                    BatchDelete.Execute(redirectOutputToFile);
+                    BatchDelete.Execute();
                     break;
 
                 default:

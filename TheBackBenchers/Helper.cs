@@ -65,6 +65,14 @@ namespace Hackathon
                 {
                     DirectoryForCreatingMillionBlobs = node.InnerText;
                 }
+                else if (node.Name == "RedirectOutputToFile")
+                {
+                    RedirectOutputToFile = bool.Parse(node.InnerText);
+                    if (RedirectOutputToFile)
+                    {
+                        Console.WriteLine("\n Output redirection was set to true - redirecting the ouput to file. \n");
+                    }
+                }
             }
         }
 
@@ -78,6 +86,7 @@ namespace Hackathon
         public string ContainerName { get; set; }
         public string DirectoryForListing { get; set; }
         public string DirectoryForCreatingMillionBlobs { get; set; }
+        public bool RedirectOutputToFile { get; set; }
 
 
         // Constants which are used at multiple places but can be fixed

@@ -7,14 +7,14 @@ namespace Hackathon
 {
     class CreateMillionBlobs
     {
-        public static void Execute(bool redirectOutputToFile)
+        public static void Execute()
         {
             Console.WriteLine("Code demonstrating creating a million blobs [via parallel tasks].");
 
             Helper helper = new Helper();
 
             // Set output path for debugging purposes
-            helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\CreateMillionBlobs.txt");
+            helper.SetConsoleOutPutPath(helper.RedirectOutputToFile, ".\\CreateMillionBlobs.txt");
 
             // Get the token from AAD for the SP
             // and use it to get the ABFS client
