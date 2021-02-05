@@ -32,9 +32,10 @@ namespace Hackathon
 
             int segmentSize = 256;
             // Set up clients
+            Random random = new Random();
             BlobServiceClient blobServiceClient = new BlobServiceClient(helper.ConnectionString);
-            BlobContainerClient container1 = blobServiceClient.GetBlobContainerClient(helper.ContainerName);
-            BlobContainerClient container2 = blobServiceClient.GetBlobContainerClient(helper.ContainerName + "2");
+            BlobContainerClient container1 = blobServiceClient.GetBlobContainerClient(helper.ContainerName + random.Next(0, 100).ToString());
+            BlobContainerClient container2 = blobServiceClient.GetBlobContainerClient(helper.ContainerName + random.Next(0, 100).ToString());
             BlobBatchClient batch = blobServiceClient.GetBlobBatchClient();
 
             container1.CreateIfNotExists();
