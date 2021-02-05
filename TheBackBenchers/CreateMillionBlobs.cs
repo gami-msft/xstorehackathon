@@ -16,16 +16,16 @@ namespace Hackathon
 
             // Get the token from AAD for the SP
             // and use it to get the ABFS client
-            DataLakeServiceClient serviceClient = helper.GetDataLakeServiceClient(Helper.storageAccountName, Helper.clientId,
-                Helper.clientSecret, Helper.tenantId);
+            DataLakeServiceClient serviceClient = helper.GetDataLakeServiceClient(Helper.StorageAccountName, Helper.ClientId,
+                Helper.ClientSecret, Helper.TenantId);
 
             // Create the specified filesystem if it does not exist
-            helper.CreateFileSystem(serviceClient, Helper.containerName);
-            DataLakeFileSystemClient fileSystemClient = serviceClient.GetFileSystemClient(Helper.containerName);
+            helper.CreateFileSystem(serviceClient, Helper.ContainerName);
+            DataLakeFileSystemClient fileSystemClient = serviceClient.GetFileSystemClient(Helper.ContainerName);
 
             // Create a directory inside the container
             string directoryName = "Test";
-            helper.CreateDirectory(serviceClient, Helper.containerName, directoryName);
+            helper.CreateDirectory(serviceClient, Helper.ContainerName, directoryName);
 
             // Create 1 million Blobs
             helper.CreateMillionBlobs(fileSystemClient, directoryName);

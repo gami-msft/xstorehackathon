@@ -16,14 +16,18 @@ namespace Hackathon
     {
         // Common arguments which are to be used for running the code [will remain common]
         // Please set them according to the storage account / SP you are using 
-        public const string tenantId = "";
-        public const string clientId = "";
-        public const string clientSecret = "";
-        public const string storageAccountName = "";
-        public const string blobStorageAccountName = "";
-        public const string containerName = "";
-        public const string directoryForListing = "";
-        public const long OneGigabyteAsBytes = 1024 * 1024 * 1024;
+        public const string TenantId = "";
+        public const string ClientId = "";
+        public const string ClientSecret = "";
+        public const string StorageAccountName = "";
+        public const string BlobStorageAccountName = "";
+        //Set up connection string & container
+        public const string ConnectionString = "";
+        public const string ContainerName = "millionblobs";
+        public const string DirectoryForListing = "";
+        public const int Kilobyte = 1024;
+        public const int Megabyte = 1024 * Kilobyte;
+        public const long Gigabyte = 1024 * Megabyte;
 
         // Public variables to store results if required
         List<string> directoryList = new List<string> ();
