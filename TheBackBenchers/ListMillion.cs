@@ -16,14 +16,14 @@ namespace Hackathon
 
             // Get the token from AAD for the SP
             // and use it to get the ABFS client
-            DataLakeServiceClient serviceClient = helper.GetDataLakeServiceClient(Helper.StorageAccountName, Helper.ClientId,
-                Helper.ClientSecret, Helper.TenantId);
+            DataLakeServiceClient serviceClient = helper.GetDataLakeServiceClient(helper.StorageAccountName, helper.ClientId,
+                helper.ClientSecret, helper.TenantId);
 
             // Get reference to an existing filesystem
-            DataLakeFileSystemClient fileSystemClient = serviceClient.GetFileSystemClient(Helper.ContainerName);
+            DataLakeFileSystemClient fileSystemClient = serviceClient.GetFileSystemClient(helper.ContainerName);
 
             // List 1 million Blobs [note send recursive = true here]
-            helper.ListBlobs(fileSystemClient, Helper.DirectoryForListing, true, false).GetAwaiter().GetResult();
+            helper.ListBlobs(fileSystemClient, helper.DirectoryForListing, true, false).GetAwaiter().GetResult();
 
             Console.WriteLine("Code demonstrating listing a million blobs [completed successfully].");
         }

@@ -11,7 +11,20 @@ namespace Hackathon
     {
         public static void Execute(bool redirectOutputToFile)
         {
-            Console.WriteLine("Code demonstrating a Batch Delete scenario. \n");
+            Console.WriteLine("\n Code demonstrating a Batch Delete scenario. \n");
+            Console.WriteLine("\n [Warning this will delete all blobs in your account - Kindly type Yes to proceed] \n");
+ 
+            // Take consent from the user (as it might get run by mistake from someone)
+            string value = Console.ReadLine();
+            if (value == "Yes")
+            {
+                Console.WriteLine("\n Proceeding with emptying all your blob containers!");
+            }
+            else
+            {
+                Console.WriteLine("\n Exiting  !");
+                return;
+            }
 
             // Set output path for debugging purposes
             Helper helper = new Helper();
@@ -19,15 +32,15 @@ namespace Hackathon
 
             int segmentSize = 256;
             // Set up clients
-            BlobServiceClient blobServiceClient = new BlobServiceClient(Helper.ConnectionString);
-            BlobContainerClient container1 = blobServiceClient.GetBlobContainerClient(Helper.ContainerName);
-            BlobContainerClient container2 = blobServiceClient.GetBlobContainerClient(Helper.ContainerName + "2");
+            BlobServiceClient blobServiceClient = new BlobServiceClient(helper.ConnectionString);
+            BlobContainerClient container1 = blobServiceClient.GetBlobContainerClient(helper.ContainerName);
+            BlobContainerClient container2 = blobServiceClient.GetBlobContainerClient(helper.ContainerName + "2");
             BlobBatchClient batch = blobServiceClient.GetBlobBatchClient();
 
             container1.CreateIfNotExists();
             container2.CreateIfNotExists();
 
-            Console.WriteLine("Creating some sample blobs for deletion.");
+            Console.WriteLine("\n Creating some sample blobs for deletion.");
 
             // Create 50 blobs in both the containers
             for (int i = 0; i < 50; i++)

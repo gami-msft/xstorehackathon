@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml;
 
 namespace Hackathon
 {
@@ -31,15 +32,14 @@ namespace Hackathon
                 " \n 5 for PageBlobDataSaver" +
                 " \n 6 for BatchDelete");
 
-
-            // Controls what code we want to run, please select 
-            // problem name from the specified enum
+            // Controls what code we want to run
+            // depending on problem id specified
             string val = Console.ReadLine();
 
             // Convert to ProblemName
             ProblemName runChallenge = (ProblemName)Convert.ToInt16(val);
 
-            switch(runChallenge)
+            switch (runChallenge)
             {
                 case ProblemName.CreateMillionBlobs:
 

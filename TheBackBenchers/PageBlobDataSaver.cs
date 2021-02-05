@@ -24,10 +24,10 @@ namespace Hackathon
             random.NextBytes(sourceBytes);
 
             // Create a Blob Service Client
-            BlobServiceClient blobServiceClient = new BlobServiceClient(Helper.ConnectionString);
+            BlobServiceClient blobServiceClient = new BlobServiceClient(helper.ConnectionString);
 
             var blobContainerClient =
-                blobServiceClient.GetBlobContainerClient(Helper.ContainerName);
+                blobServiceClient.GetBlobContainerClient(helper.ContainerName);
             blobContainerClient.CreateIfNotExists();
 
             var pageBlobClient = blobContainerClient.GetPageBlobClient("samplepageblob.vhd");

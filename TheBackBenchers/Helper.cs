@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Hackathon
 {
@@ -17,21 +18,72 @@ namespace Hackathon
         // Common arguments which are to be used for running the code
         // Please set them according to the storage account / SP you 
         // are using, Please leave these empty while checking in
-        
-        public const string TenantId = "";
-        public const string ClientId = "";
-        public const string ClientSecret = "";
-        
-        public const string StorageAccountName = "";
-        public const string BlobStorageAccountName = "";
-        public const string ConnectionString = "";
+
+        public Helper()
+        {
+            // Read arguments from 'xml' file, this sets 
+            // Storage account names, client id, secrets etc.
+            XmlDocument doc = new XmlDocument();
+            doc.Load("..\\..\\..\\AccountDetails.xml");
+
+            // Read all nodes one by one and set the respective properties
+            foreach (XmlNode node in doc.DocumentElement.ChildNodes)
+            {
+                if (node.Name == "TenantId")
+                {
+                    TenantId = node.InnerText;
+                }
+                else if (node.Name == "ClientId")
+                {
+                    ClientId = node.InnerText;
+                }
+                else if (node.Name == "ClientSecret")
+                {
+                    ClientSecret = node.InnerText;
+                }
+                else if (node.Name == "StorageAccountName")
+                {
+                    StorageAccountName = node.InnerText;
+                }
+                else if (node.Name == "BlobStorageAccountName")
+                {
+                    BlobStorageAccountName = node.InnerText;
+                }
+                else if (node.Name == "ConnectionString")
+                {
+                    ConnectionString = node.InnerText;
+                }
+                else if (node.Name == "ContainerName")
+                {
+                    ContainerName = node.InnerText;
+                }
+                else if (node.Name == "DirectoryForListing")
+                {
+                    DirectoryForListing = node.InnerText;
+                }
+                else if (node.Name == "DirectoryForCreatingMillionBlobs")
+                {
+                    DirectoryForCreatingMillionBlobs = node.InnerText;
+                }
+            }
+        }
+
+        // Properties that are set by reading XML document
+        public string TenantId { get; set; }
+        public string ClientId { get; set; }
+        public string ClientSecret { get; set; }
+        public string StorageAccountName { get; set; }
+        public string BlobStorageAccountName { get; set; }
+        public string ConnectionString { get; set; }
+        public string ContainerName { get; set; }
+        public string DirectoryForListing { get; set; }
+        public string DirectoryForCreatingMillionBlobs { get; set; }
+
 
         // Constants which are used at multiple places but can be fixed
         public const int Kilobyte = 1024;
         public const int Megabyte = 1024 * Kilobyte;
         public const long Gigabyte = 1024 * Megabyte;
-        public const string ContainerName = "millionblobs";
-        public const string DirectoryForListing = "MultipleLevels";
 
         // Public variables to store results if required
         public List<string> directoryList = new List<string> ();

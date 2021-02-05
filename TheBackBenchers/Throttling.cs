@@ -33,8 +33,15 @@ namespace Hackathon
             /// There are two ways we can run this code, select
             /// 'Option 1' Fixed rery policy [We will see that app will fail with many 503's]
             /// 'Option 2' Exponential backoff policy [We will see our app will succeed].
-            
-            int selectedOption = 2;
+            Console.WriteLine("Enter retry policy to be used" +
+                " \n 1 for Fixed {You will see many 503's}" +
+                " \n 2 for Exponential {The code will succeed}");
+
+            // Controls what code we want to run
+            // depending on problem id specified
+            string value = Console.ReadLine();
+
+            int selectedOption = Int32.Parse(value);
             BlobClientOptions options = new BlobClientOptions();
             options.Retry.MaxRetries = 10;
 
@@ -50,15 +57,15 @@ namespace Hackathon
             Helper helper = new Helper();
 
             // Set output path for debugging purposes
-            helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\Trottling.txt");
+            helper.SetConsoleOutPutPath(redirectOutputToFile, ".\\Throttling.txt");
 
             // Get the token from AAD for the SP
             // and use it to get the ABFS [Blob] client
-            BlobServiceClient serviceClient = helper.GetBlobServiceClient(Helper.BlobStorageAccountName, Helper.ClientId,
-                Helper.ClientSecret, Helper.TenantId, options);
+            BlobServiceClient serviceClient = helper.GetBlobServiceClient(helper.BlobStorageAccountName, helper.ClientId,
+                helper.ClientSecret, helper.TenantId, options);
 
             var blobContainerClient =
-                serviceClient.GetBlobContainerClient(Helper.ContainerName);
+                serviceClient.GetBlobContainerClient(helper.ContainerName);
 
             // Get a page blob client
             var pageBlobClient = blobContainerClient.GetPageBlobClient("dailyUpdates" + DateTime.Now.ToString()

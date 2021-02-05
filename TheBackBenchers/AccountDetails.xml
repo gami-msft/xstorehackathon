@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AccountDetails>
+
+<!-- Tenant Id where the service principal belongs -->
+<TenantId></TenantId> 
+
+<!-- Client Id of a service principal [Note the SP should have 'Storage Blob Data Owner Role' on the account] -->
+<ClientId></ClientId>
+
+<!-- Client Secret of above client -->
+<ClientSecret></ClientSecret>
+
+<!-- An ADLS Gen2 (XNS enabled) account accessible to above cient -->
+<StorageAccountName></StorageAccountName>
+
+<!-- Container name in above Gen2 account [used for listing and data creation] -->
+<ContainerName></ContainerName>
+
+<!-- Directory name in above container [used for creating million blobs] -->
+<DirectoryForCreatingMillionBlobs></DirectoryForCreatingMillionBlobs>
+
+<!-- Directory name in above container [used for listing] -->
+<DirectoryForListing></DirectoryForListing>
+
+<!-- A Storage V2 (XNS disabled) account accessible to above cient -->
+<BlobStorageAccountName></BlobStorageAccountName>
+
+<!-- Add a connection string for an account here -->
+<!-- This will batch delete all the blobs in your account so please be careful and do not run this in an important production account -->
+
+<ConnectionString></ConnectionString>
+
+</AccountDetails>
